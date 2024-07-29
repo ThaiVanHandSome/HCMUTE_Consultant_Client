@@ -1,11 +1,14 @@
 import { Button, Divider, Input } from "@nextui-org/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useOverlay } from "~/contexts/OverlayContext";
 
 const ConfirmToken = ({
-  setStatus,
+  setIsConfirmSuccess,
 }: {
-  setStatus: React.Dispatch<React.SetStateAction<number>>;
+  setIsConfirmSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [openOverlay, _] = useOverlay();
+
   const [inpVal, setInpVal] = useState<string>("");
 
   return (
@@ -22,6 +25,7 @@ const ConfirmToken = ({
         color="primary"
         className="w-full"
         isDisabled={inpVal.length === 0}
+        onClick={openOverlay}
       >
         Xác nhận
       </Button>

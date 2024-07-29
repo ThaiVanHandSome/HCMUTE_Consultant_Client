@@ -1,12 +1,8 @@
-import { ReactNode } from "react";
+import { LayoutProps } from "~/types/layout";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-type Props = {
-  children: ReactNode;
-};
-
-const BaseLayout = ({ children }: Props) => {
+const BaseLayout = ({ children }: LayoutProps) => {
   return (
     <section>
       <Header />

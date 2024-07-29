@@ -4,21 +4,24 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { ToastContainer } from "react-toastify";
+import { OverlayProvider } from "./contexts/OverlayContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <NextUIProvider>
-    <App />
-    <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
-    />
-  </NextUIProvider>
+  <OverlayProvider>
+    <NextUIProvider>
+      <App />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </NextUIProvider>
+  </OverlayProvider>
 );

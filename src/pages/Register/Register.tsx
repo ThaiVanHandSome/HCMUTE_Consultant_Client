@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { MyPasswordInp, MySelect, MyTextInp } from "../../components/FormItem";
 import { Button } from "@nextui-org/react";
 import { genders } from "../../assets/static/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Status from "./Status";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,13 +14,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import ConfirmToken from "../../components/ConfirmToken";
+import { Link } from "react-router-dom";
+import { routes } from "~/config";
 
 const Register = () => {
   const [selectedGender, setSelectedGender] = useState<
     string | number | undefined
   >("male");
 
-  const [status, setStatus] = useState<number>(2);
+  const [isConfirmSuccess, setIsConfirmSuccess] = useState<boolean>(false);
+  const [status, setStatus] = useState<number>(1);
+
+  useEffect(() => {
+    if (isConfirmSuccess) {
+      setStatus((prev) => prev + 1);
+    }
+  }, [isConfirmSuccess]);
 
   return (
     <section>
@@ -51,7 +60,7 @@ const Register = () => {
             className={clsx(
               "lg:w-[150px] lg:h-[2px] w-[2px] h-[40px] bg-slate-400 mx-2",
               {
-                "bg-success-600": status >= 2,
+                "bg-success-600": status >= 3,
               }
             )}
           ></div>
@@ -120,13 +129,31 @@ const Register = () => {
                   name="passwordAgain"
                   isRequired
                 />
+                <p className="text-sm font-semibold">
+                  Đã có tài khoản?{" "}
+                  <Link to={routes.login} className="text-primary-600">
+                    Đăng nhập
+                  </Link>
+                </p>
                 <Button color="primary" className="w-full" type="submit">
                   Đăng ký
                 </Button>
               </Form>
             </Formik>
           )}
-          {status === 2 && <ConfirmToken />}
+          {status === 2 && (
+            <ConfirmToken setIsConfirmSuccess={setIsConfirmSuccess} />
+          )}
+          {status === 3 && (
+            <div className="flex flex-col items-center">
+              <h2 className="font-bold text-lg text-secondary mb-4 text-center">
+                Chúc mừng bạn đã đăng ký tài khoản thành công!
+              </h2>
+              <Link to={routes.login}>
+                <Button color="primary">Quay lại đăng nhập</Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>
