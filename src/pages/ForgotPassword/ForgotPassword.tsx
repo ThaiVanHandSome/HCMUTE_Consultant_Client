@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ConfirmToken from "~/components/ConfirmToken";
 
 const ForgotPassword = () => {
-  const [status, setStatus] = useState<number>(2);
+  const [status, setStatus] = useState<number>(1);
   const [isConfirmSuccess, setIsConfirmSuccess] = useState<boolean>(false);
 
   useEffect(() => {

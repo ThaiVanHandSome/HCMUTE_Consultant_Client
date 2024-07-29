@@ -129,7 +129,7 @@ const Register = () => {
                   name="passwordAgain"
                   isRequired
                 />
-                <p className="text-sm font-semibold">
+                <p className="text-sm font-semibold ms-2 mb-3">
                   Đã có tài khoản?{" "}
                   <Link to={routes.login} className="text-primary-600">
                     Đăng nhập

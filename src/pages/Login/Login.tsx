@@ -41,7 +41,7 @@ const Login = () => {
                 <Button color="primary" className="w-full mb-2" type="submit">
                   Đăng nhập
                 </Button>
-                <p className="text-sm font-semibold">
+                <p className="text-sm font-semibold text-center">
                   Không có tài khoản?{" "}
                   <Link to={routes.register} className="text-primary-600">
                     Đăng ký ngay
